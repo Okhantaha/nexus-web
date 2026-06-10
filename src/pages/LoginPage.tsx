@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import api from '../lib/api'
 import { useAuthStore } from '../store/authStore'
-import type { AuthResponse, User } from '../types'
+import type { AuthResponse } from '../types'
 
 export default function LoginPage() {
   const navigate = useNavigate()
@@ -19,11 +19,8 @@ export default function LoginPage() {
     setLoading(true)
     setError('')
     try {
-      const { data } = await api.post<AuthResponse>('/api/auth/login', { mail, password })
-      const { data: user } = await api.get<User>('/api/auth/me', {
-        headers: { Authorization: `Bearer ${data.access_token}` },
-      })
-      setAuth(data.access_token, user)
+      const { data } = await api.post<AuthResponse>('/api/auth/login', { mail, sifre: password })
+      setAuth(data.access_token, data.user)
       navigate('/discover')
     } catch {
       setError('E-posta veya şifre hatalı.')

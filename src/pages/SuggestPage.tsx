@@ -29,8 +29,8 @@ export default function SuggestPage() {
     }
   }
 
-  const initials = user?.mail?.slice(0, 2).toUpperCase() ?? 'JD'
-  const displayName = user?.mail?.split('@')[0] ?? 'Kullanıcı'
+  const initials = `${user?.isim?.[0] ?? ''}${user?.soyisim?.[0] ?? ''}`.toUpperCase() || 'KU'
+  const displayName = user ? `${user.isim} ${user.soyisim}` : 'Kullanıcı'
 
   return (
     <div className="flex flex-col min-h-screen bg-background max-w-mobile mx-auto">
