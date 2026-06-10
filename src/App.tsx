@@ -1,7 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import LoginPage from './pages/LoginPage'
-import RegisterPage from './pages/RegisterPage'
 import DiscoverPage from './pages/DiscoverPage'
 import ResultsPage from './pages/ResultsPage'
 import ChatPage from './pages/ChatPage'
@@ -22,8 +21,7 @@ export default function App() {
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/kayit" element={<RegisterPage />} />
-          <Route path="/discover" element={<ProtectedRoute><DiscoverPage /></ProtectedRoute>} />
+<Route path="/discover" element={<ProtectedRoute><DiscoverPage /></ProtectedRoute>} />
           <Route path="/results" element={<ProtectedRoute><ResultsPage /></ProtectedRoute>} />
           <Route path="/chat" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
           <Route path="/suggest" element={<ProtectedRoute><SuggestPage /></ProtectedRoute>} />

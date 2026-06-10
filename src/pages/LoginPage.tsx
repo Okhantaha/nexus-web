@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import api from '../lib/api'
 import { useAuthStore } from '../store/authStore'
@@ -82,9 +82,6 @@ export default function LoginPage() {
                 </svg>
               </button>
             </div>
-            <div className="text-right mt-2">
-              <button type="button" className="text-primary text-xs font-medium">Şifremi Unuttum</button>
-            </div>
           </div>
 
           {error && <p className="text-red-500 text-xs text-center">{error}</p>}
@@ -99,10 +96,6 @@ export default function LoginPage() {
           </motion.button>
         </form>
 
-        <p className="text-center text-text-muted text-sm mt-6">
-          Hesabın yok mu?{' '}
-          <Link to="/kayit" className="text-primary font-semibold">Kayıt Ol</Link>
-        </p>
       </motion.div>
     </div>
   )
