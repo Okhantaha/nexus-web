@@ -20,8 +20,14 @@ export interface Venue {
   mutfak_turu: string
   puan: number
   aciklama: string
-  mesafe: string
+  mesafe_metre?: number
   fotograf_url?: string
+}
+
+export interface MekanlarResponse {
+  mekanlar: Venue[]
+  konum?: { lat: number; lng: number }
+  toplam?: number
 }
 
 export interface OneriKullanici {

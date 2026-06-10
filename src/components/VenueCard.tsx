@@ -27,7 +27,8 @@ export default function VenueCard({ venue, index, isTop, suggesterName, voteCoun
   const likeOpacity = useTransform(x, [0, 80], [0, 1])
   const nopeOpacity = useTransform(x, [-80, 0], [1, 0])
 
-  const { isim: name, mutfak_turu: cuisine, adres: address, puan: rating, mesafe: distance } = venue
+  const { isim: name, mutfak_turu: cuisine, adres: address, puan: rating, mesafe_metre } = venue
+  const distance = mesafe_metre ? `${mesafe_metre}m` : ''
   const imageUrl = FOOD_IMAGES[index % FOOD_IMAGES.length]
 
   function handleDragEnd(_: unknown, info: PanInfo) {

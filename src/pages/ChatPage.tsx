@@ -40,8 +40,8 @@ export default function ChatPage() {
     setLoading(true)
 
     try {
-      const { data } = await api.get<Venue[]>(`/api/lunch/mekanlar?lat=${lat ?? 39.9564}&lon=${lon ?? 32.8527}`)
-      const venues = data.slice(0, 2)
+      const { data } = await api.get<{ mekanlar: Venue[] }>(`/api/lunch/mekanlar?lat=${lat ?? 39.9564}&lon=${lon ?? 32.8527}`)
+      const venues = data.mekanlar.slice(0, 2)
       const aiMsg: ChatMessage = {
         id: nextId(),
         role: 'assistant',

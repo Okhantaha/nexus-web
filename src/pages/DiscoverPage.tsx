@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import api from '../lib/api'
 import { useGeolocation } from '../hooks/useGeolocation'
 import VenueCard from '../components/VenueCard'
-import type { Venue, MekanOnerileriListesi, OyResponse } from '../types'
+import type { Venue, MekanlarResponse, MekanOnerileriListesi, OyResponse } from '../types'
 
 type Tab = 'ai' | 'human'
 
@@ -18,9 +18,10 @@ export default function DiscoverPage() {
 
   const aiQuery = useQuery({
     queryKey: ['venues', lat, lon],
-    queryFn: () => api.get<Venue[]>(`/api/lunch/mekanlar?lat=${lat}&lon=${lon}`).then((r) => r.data),
+    queryFn: () => api.get<MekanlarResponse>(`/api/lunch/mekanlar?lat=${lat}&lon=${lon}`).then((r) => r.data.mekanlar),
     enabled: !!lat && !!lon,
     staleTime: 5 * 60 * 1000,
+    retry: false,
   })
 
   const humanQuery = useQuery({
@@ -116,7 +117,6 @@ export default function DiscoverPage() {
                     mutfak_turu: (venue as { mutfak_turu: string }).mutfak_turu,
                     puan: 0,
                     aciklama: '',
-                    mesafe: '',
                   } : venue as Venue}
                   index={currentIndex + i}
                   isTop={i === 0}
