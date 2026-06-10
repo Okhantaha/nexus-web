@@ -19,7 +19,7 @@ export default function SuggestPage() {
     e.preventDefault()
     setLoading(true)
     try {
-      await api.post('/api/lunch/oner', { mekan_adi: mekanAdi, mutfak_turu: mutfakTuru, adres })
+      await api.post('/api/lunch/oner', { isim: mekanAdi, mutfak_turu: mutfakTuru, adres })
       setSuccess(true)
       setTimeout(() => navigate('/discover'), 1500)
     } catch {
