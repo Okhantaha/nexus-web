@@ -26,6 +26,7 @@ export default function DiscoverPage() {
   const humanQuery = useQuery({
     queryKey: ['suggestions'],
     queryFn: () => api.get<MekanOnerileriListesi>('/api/lunch/oneriler').then((r) => r.data),
+    retry: false,
   })
 
   const voteMutation = useMutation({

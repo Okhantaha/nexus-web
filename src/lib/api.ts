@@ -16,7 +16,7 @@ api.interceptors.response.use(
   (err) => {
     if (err.response?.status === 401) {
       localStorage.removeItem('nexus_token')
-      window.location.href = '/'
+      localStorage.removeItem('nexus-auth')
     }
     return Promise.reject(err)
   }
