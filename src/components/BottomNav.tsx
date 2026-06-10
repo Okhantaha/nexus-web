@@ -1,4 +1,5 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useAuthStore } from '../store/authStore'
 
 const tabs = [
   { to: '/discover', label: 'Keşfet', icon: (a: boolean) => (
@@ -24,6 +25,14 @@ const tabs = [
 ]
 
 export default function BottomNav() {
+  const navigate = useNavigate()
+  const clearAuth = useAuthStore((s) => s.clearAuth)
+
+  function handleLogout() {
+    clearAuth()
+    navigate('/')
+  }
+
   return (
     <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-mobile bg-white border-t border-gray-100 z-50">
       <div className="flex items-center justify-around py-2 pb-safe">
@@ -39,6 +48,13 @@ export default function BottomNav() {
             )}
           </NavLink>
         ))}
+        <button onClick={handleLogout}
+          className="flex flex-col items-center gap-0.5 px-4 py-1 text-text-muted transition-colors hover:text-red-400">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+          </svg>
+          <span className="text-[10px] font-medium">Çıkış</span>
+        </button>
       </div>
     </nav>
   )
